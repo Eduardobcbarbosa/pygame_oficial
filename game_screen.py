@@ -1,14 +1,14 @@
 import pygame
 from config import screen, font_xl, font_medium, font_large, font_small, WHITE, BLACK, RED, GREEN, WIDTH, HEIGHT
 from assets import (
-    fundodetela_menu, 
+    tela_incial, 
     fundodetela_game_over, 
-    fundodetela_phase1, 
-    fundodetela_phase2
+    tela_phase1, 
+    tela_phase2
 )
 
 def draw_menu():
-    screen.blit(fundodetela_menu, (0, 0))  
+    screen.blit(tela_incial, (0, 0))  
     title = font_xl.render("Guerra contra a DP", True, WHITE)
     start = font_medium.render("Pressione 'ESPAÇO' para começar", True, RED)
     instructions = font_medium.render("Use as setinhas para mover e 'ESPAÇO' para atirar", True, WHITE)
@@ -28,7 +28,7 @@ def draw_game_over(player):
     screen.blit(restart, (400 - restart.get_width() // 2, 350))
 
 def draw_phase1(player, bullets, enemies, quizzes):
-    screen.blit(fundodetela_phase1, (0, 0))  
+    screen.blit(tela_phase1, (0, 0))  
     player.draw()
     
     for bullet in bullets:
