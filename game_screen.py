@@ -23,7 +23,7 @@ def draw_game_over(player):
     screen.blit(restart, (400 - restart.get_width() // 2, 350))
 
 def draw_phase1(player, bullets, enemies, quizzes):
-    screen.blit(fundodetela_phase1, (0, 0))  # Atualizado
+    screen.blit(fundodetela_phase1, (0, 0))  
     player.draw()
     
     for bullet in bullets:
@@ -44,7 +44,7 @@ def draw_phase1(player, bullets, enemies, quizzes):
     screen.blit(phase_text, (WIDTH - 100, 20))
 
 def draw_phase2(player, bullets, enemies, quizzes):
-    screen.blit(fundodetela_phase2, (0, 0))  # Atualizado
+    screen.blit(fundodetela_phase2, (0, 0))  
     player.draw()
     
     for bullet in bullets:
