@@ -1,22 +1,16 @@
 import pygame
 
+# Inicializa o pygame (importante para carregar imagens)
 pygame.init()
 
-#fundodetela_menu = pygame.image.load('assets/tela_incial.png')
-#fundodetela_phase1 = pygame.image.load('assets/tela_phase1.png')
-#fundodetela_phase2 = pygame.image.load('assets/tela_phase2.png')
-#fundodetela_game_over = pygame.image.load('assets/tela_game_over.png')
-
-fundodetela_menu = 'tela_inicial'
-fundodetela_phase1 = 'tela_phase1'
-fundodetela_phase2 = 'tela_phase2'
-fundodetela_game_over = 'tela_game_over'
-fundodetela_victory = 'tela_victory'
-
-def load_assets():
-    assets = {}
-    assets[fundodetela_menu] = pygame.image.load('assets/tela_incial.png').convert()
-    assets[fundodetela_phase1] = pygame.image.load('assets/tela_phase1.png').convert()
-    assets[fundodetela_phase2] = pygame.image.load('assets/tela_phase2.png').convert()
-    assets[fundodetela_game_over] = pygame.image.load('assets/tela_game_over.png').convert()
-    assets[fundodetela_victory] = pygame.image.load('assets/tela_victory.png').convert()
+# Carrega as imagens
+fundodetela_menu = pygame.image.load('assets/tela_inicial.png').convert()
+fundodetela_menu = pygame.transform.scale(fundodetela_menu, (800, 600))
+fundodetela_phase1 = pygame.image.load('assets/tela_phase1.png').convert()
+fundodetela_phase1 = pygame.transform.scale(fundodetela_phase1, (800, 600))
+fundodetela_phase2 = pygame.image.load('assets/tela_phase2.png').convert()
+fundodetela_phase2 = pygame.transform.scale(fundodetela_phase2, (800, 600))
+fundodetela_game_over = pygame.image.load('assets/tela_game_over.png').convert()
+fundodetela_game_over = pygame.transform.scale(fundodetela_game_over, (800, 600))
+fundodetela_victory = pygame.image.load('assets/tela_victory.png').convert()
+fundodetela_victory = pygame.transform.scale(fundodetela_victory, (800, 600))

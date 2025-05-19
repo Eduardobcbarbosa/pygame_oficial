@@ -54,23 +54,25 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
+        
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 running = False
-
+            
             if event.key == pygame.K_SPACE:
                 if game_state == MENU:
                     start_phase1()
                 elif game_state in (GAME_OVER, VICTORY):
                     reset_game()
-                elif game_state in (PHASE1, PHASE2):
-                    player.shoot()
-
-    # Atualização do jogo (Fase 1)
+    
+    # Lógica do jogo
     if game_state == PHASE1:
         keys = pygame.key.get_pressed()
         player.move(keys)
+        
+        # Controle de tiros
+        if keys[pygame.K_SPACE]:
+            player.shoot(bullets)
 
         # Spawn de inimigos
         enemy_spawn_timer += 1
@@ -134,11 +136,14 @@ while running:
                         colidiu_com_bala_quiz = True
                         if player.lives <= 0:
                             game_state = GAME_OVER
-
-    # Atualização do jogo (Fase 2)
+    
     elif game_state == PHASE2:
         keys = pygame.key.get_pressed()
         player.move(keys)
+        
+        # Controle de tiros
+        if keys[pygame.K_SPACE]:
+            player.shoot(bullets)
 
         # Spawn de inimigos
         enemy_spawn_timer += 1

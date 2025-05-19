@@ -23,7 +23,8 @@ def draw_game_over(player):
     screen.blit(restart, (WIDTH//2 - restart.get_width()//2, HEIGHT//2 + 50))
 
 def draw_phase1(player, bullets, enemies, quizzes):
-    screen.blit(fundodetela_phase1, (0, 0))  
+    screen.blit(fundodetela_phase1, (0, 0))
+
     player.draw(screen)
     
     for bullet in bullets:
@@ -34,6 +35,7 @@ def draw_phase1(player, bullets, enemies, quizzes):
     
     for quiz in quizzes:
         quiz.draw(screen)
+
     
     score_text = font_medium.render(f"Pontos: {player.score}", True, BLACK)
     lives_text = font_medium.render(f"Vidas: {player.lives}", True, BLACK)
