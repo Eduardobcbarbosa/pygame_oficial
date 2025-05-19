@@ -1,6 +1,6 @@
 import pygame
 import random
-from config import WIDTH, HEIGHT, BLUE, WHITE, YELLOW, RED, PURPLE
+from config import screen, WIDTH, HEIGHT, BLUE, WHITE, YELLOW, RED, PURPLE, font_small
 
 class Player:
     def __init__ (self):
@@ -11,15 +11,29 @@ class Player:
         self.speed = 5
         self.lives = 3
         self.score = 0
+        self.face_image = None
         
-    def draw(self, screen):
+    def draw(self):
         pygame.draw.rect(screen, BLUE, (self.x, self.y, self.width, self.height))
+        
+        if self.face_image:
+            screen.blit(self.face_image, (self.x, self.y))
+        else:
+            pygame.draw.circle(screen, WHITE, (self.x + self.width//2, self.y + self.height//2), 15)
+        
+        pygame.draw.rect(screen, (0, 0, 0), (self.x - 20, self.y + 10, 20, 30))
         
     def move(self, keys):
         if keys[pygame.K_UP] and self.y > 0:
             self.y -= self.speed
         if keys[pygame.K_DOWN] and self.y < HEIGHT - self.height:
             self.y += self.speed
+            
+    def shoot(self):
+        from main import bullets, shoot_sound
+        bullets.append(Bullet(self.x - 20, self.y + self.height // 2))
+        if shoot_sound:
+            shoot_sound.play()
 
 class Bullet:
     def __init__ (self, x, y):
@@ -32,7 +46,7 @@ class Bullet:
     def update(self):
         self.x -= self.speed
         
-    def draw(self, screen):
+    def draw(self):
         pygame.draw.rect(screen, YELLOW, (self.x, self.y, self.width, self.height))
         
     def is_off_screen(self):
@@ -49,7 +63,7 @@ class Enemy:
     def update(self):
         self.x += self.speed
         
-    def draw(self, screen):
+    def draw(self):
         pygame.draw.rect(screen, RED, (self.x, self.y, self.width, self.height))
 
 class QuizWord:
