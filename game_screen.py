@@ -9,8 +9,8 @@ def draw_menu():
     instructions = font_medium.render("Use as setinhas para mover e 'ESPAÇO' para atirar", True, WHITE)
 
    
-    screen.blit(start, (WIDTH//2 - start.get_width()//2, HEIGHT//2))
-    screen.blit(instructions, (WIDTH//2 - instructions.get_width()//2, HEIGHT//2 + 50))
+    screen.blit(start, (WIDTH//2 - start.get_width()//2, HEIGHT*0.6))
+    screen.blit(instructions, (WIDTH//2 - instructions.get_width()//2, HEIGHT*0.7))
 
 def draw_game_over(player):
     screen.blit(fundodetela_game_over, (0, 0))  
@@ -18,8 +18,8 @@ def draw_game_over(player):
     score_text = font_medium.render(f"Pontuação: {player.score}", True, WHITE)
     restart = font_medium.render("Pressione ESPAÇO para recomeçar", True, GREEN)
 
-    screen.blit(score_text, (WIDTH//2 - score_text.get_width()//2, HEIGHT//2))
-    screen.blit(restart, (WIDTH//2 - restart.get_width()//2, HEIGHT//2 + 50))
+    screen.blit(score_text, (WIDTH//2 - score_text.get_width()//2, HEIGHT*0.43))
+    screen.blit(restart, (WIDTH//2 - restart.get_width()//2, HEIGHT*0.9))
 
 def draw_phase1(player, bullets, enemies, quizzes):
     screen.blit(fundodetela_phase1, (0, 0))
