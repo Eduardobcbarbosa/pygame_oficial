@@ -14,7 +14,7 @@ bullets = []
 enemies = []
 quizzes = []
 heart = Heart()
-game_state = MENU
+game_state = MENU 
 enemy_spawn_timer = 0
 quiz_spawn_timer = 0
 heart_spawn_timer = 0
@@ -38,7 +38,7 @@ def start_phase1():
     global game_state
     game_state = PHASE1
     player.score = 0
-    player.lives = 10
+    player.lives = 10   
 
 def start_phase2(vidas):
     global game_state
@@ -144,7 +144,6 @@ while running:
                             game_state = GAME_OVER
     
     elif game_state == PHASE2:
-        pontos_heart=0
         keys = pygame.key.get_pressed()
         player.move(keys)
         
@@ -170,11 +169,9 @@ while running:
         # Spawn de corações
         if not heart.active:
             heart_spawn_timer += 1
-            if pontos_heart >= 5:
+            if heart_spawn_timer >= 900:
                 heart.active = True
                 heart_spawn_timer = 0
-                pontos_heart=0
-                heart.speed=1.5
                 heart.x = random.randint(50, WIDTH - 200)
                 heart.y = random.randint(50, HEIGHT - 50)
 
@@ -204,7 +201,6 @@ while running:
                         bullets.remove(bullet)
                         enemies.remove(enemy)
                         player.score += 1
-                        pontos_heart+=1
                         enemies_killed_in_phase2 += 1
                         colidiu_com_bala_inimigo_fase2 = True
 
@@ -263,7 +259,7 @@ while running:
     elif game_state == PHASE1:
         draw_phase1(player, bullets, enemies, quizzes)
     elif game_state == PHASE2:
-        draw_phase2(player, bullets, enemies, quizzes,heart)
+        draw_phase2(player, bullets, enemies, quizzes, heart)
     elif game_state == GAME_OVER:
         draw_game_over(player)
     elif game_state == VICTORY:
