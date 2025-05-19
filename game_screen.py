@@ -44,9 +44,10 @@ def draw_phase1(player, bullets, enemies, quizzes):
     screen.blit(lives_text, (20, 50))
     screen.blit(phase_text, (WIDTH - 100, 20))
 
-def draw_phase2(player, bullets, enemies, quizzes):
+def draw_phase2(player, bullets, enemies, quizzes,heart):
     screen.blit(fundodetela_phase2, (0, 0))  
     player.draw(screen)
+    heart.draw(screen)
     
     for bullet in bullets:
         bullet.draw(screen)
@@ -57,6 +58,7 @@ def draw_phase2(player, bullets, enemies, quizzes):
     for quiz in quizzes:
         quiz.draw(screen)
     
+
     score_text = font_medium.render(f"Pontos: {player.score}", True, WHITE)
     lives_text = font_medium.render(f"Vidas: {player.lives}", True, WHITE)
     phase_text = font_small.render("Fase 2", True, WHITE)
