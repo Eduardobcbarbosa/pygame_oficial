@@ -3,7 +3,7 @@ import random
 from config import WIDTH, HEIGHT, BLUE, WHITE, YELLOW, RED, PURPLE
 
 class Player:
-    def _init_(self):
+    def __init__ (self):
         self.width = 50
         self.height = 50
         self.x = WIDTH - 100
@@ -22,7 +22,7 @@ class Player:
             self.y += self.speed
 
 class Bullet:
-    def _init_(self, x, y):
+    def __init__ (self, x, y):
         self.x = x
         self.y = y
         self.speed = 10
@@ -39,7 +39,7 @@ class Bullet:
         return self.x < 0
 
 class Enemy:
-    def _init_(self, speed):
+    def __init__ (self, speed):
         self.width = 40
         self.height = 40
         self.x = 0
@@ -53,7 +53,7 @@ class Enemy:
         pygame.draw.rect(screen, RED, (self.x, self.y, self.width, self.height))
 
 class QuizWord:
-    def _init_(self, speed):
+    def __init__ (self, speed):
         self.width = 60
         self.height = 40
         self.x = 0
@@ -65,3 +65,28 @@ class QuizWord:
         
     def draw(self, screen):
         pygame.draw.rect(screen, PURPLE, (self.x, self.y, self.width, self.height))
+    
+    class Heart:
+        def __init__(self):
+            self.width = 30
+            self.height = 30
+            self.x = random.randint(50, WIDTH - 200)
+            self.y = random.randint(50, HEIGHT - 50)
+            self.speed = 3
+            self.active = False
+        
+        def update(self):
+            self.x += self.speed
+        
+        def draw(self, screen):
+            pygame.draw.polygon(screen, RED, [
+                (self.x + self.width//2, self.y),
+                (self.x + self.width, self.y + self.height//3),
+                (self.x + self.width, self.y + self.height),
+                (self.x + self.width//2, self.y + self.height*2//3),
+                (self.x, self.y + self.height),
+                (self.x, self.y + self.height//3)
+            ])
+        
+        def is_past_line(self):
+            return self.x > WIDTH - 150
