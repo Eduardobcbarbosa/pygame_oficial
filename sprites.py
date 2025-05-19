@@ -40,7 +40,7 @@ class Bullet:
         self.x -= self.speed
         
     def draw(self, screen):
-        pygame.draw.rect(screen, YELLOW, (self.x, self.y, self.width, self.height))
+        pygame.draw.rect(screen, BLACK, (self.x, self.y, self.width, self.height))
         
     def is_off_screen(self):
         return self.x < 0
