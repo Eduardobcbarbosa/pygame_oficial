@@ -12,8 +12,11 @@ class Player:
         self.lives = 3
         self.score = 0
         
-    def draw(self, screen):  # Adicione o parâmetro screen
-        pygame.draw.rect(screen, BLUE, (self.x, self.y, self.width, self.height))
+        self.image = pygame.image.load('assets/player.png').convert_alpha()
+        self.image = pygame.transform.scale(self.image, (self.width, self.height))
+        
+    def draw(self, screen):
+        screen.blit(self.image, (self.x, self.y))
         
     def move(self, keys):
         if keys[pygame.K_UP] and self.y > 0:
@@ -30,7 +33,7 @@ class Bullet:
         self.x = x
         self.y = y
         self.speed = 10
-        self.width = 10
+        self.width = 5
         self.height = 5
         
     def update(self):
@@ -49,13 +52,17 @@ class Enemy:
         self.x = 0
         self.y = random.randint(0, HEIGHT - self.height)
         self.speed = speed
+        self.word = "DP"
         
     def update(self):
         self.x += self.speed
         
     def draw(self, screen):
         pygame.draw.rect(screen, RED, (self.x, self.y, self.width, self.height))
-    
+        font = pygame.font.SysFont('Arial', 20)
+        text = font.render(self.word, True, WHITE)
+        screen.blit(text, (self.x + 10, self.y + 10))
+        
     def is_past_line(self):
         return self.x > WIDTH - 150
 

@@ -5,6 +5,8 @@ from config import *
 from assets import *
 from sprites import Player, Bullet, Enemy, QuizWord, Heart
 from game_screen import draw_menu, draw_game_over, draw_phase1, draw_phase2, draw_victory
+last_shot_time = 0
+shot_delay = 150
 
 # Inicialização do jogo
 player = Player()
@@ -36,7 +38,7 @@ def start_phase1():
     global game_state
     game_state = PHASE1
     player.score = 0
-    player.lives = 3
+    player.lives = 5
 
 def start_phase2():
     global game_state
@@ -72,7 +74,10 @@ while running:
         
         # Controle de tiros
         if keys[pygame.K_SPACE]:
-            player.shoot(bullets)
+            current_time = pygame.time.get_ticks()
+            if current_time - last_shot_time > shot_delay:
+                player.shoot(bullets)
+                last_shot_time = current_time
 
         # Spawn de inimigos
         enemy_spawn_timer += 1
@@ -83,7 +88,7 @@ while running:
         # Spawn de palavras QUIZ
         quiz_spawn_timer += 1
         if quiz_spawn_timer >= 180:
-            quizzes.append(QuizWord(1.5))
+            quizzes.append(QuizWord(1.3))
             quiz_spawn_timer = 0
 
         # Atualização de balas
@@ -143,7 +148,10 @@ while running:
         
         # Controle de tiros
         if keys[pygame.K_SPACE]:
-            player.shoot(bullets)
+            current_time = pygame.time.get_ticks()
+            if current_time - last_shot_time > shot_delay:
+                player.shoot(bullets)
+                last_shot_time = current_time
 
         # Spawn de inimigos
         enemy_spawn_timer += 1
