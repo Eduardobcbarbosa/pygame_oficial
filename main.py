@@ -40,8 +40,9 @@ def start_phase1():
     player.score = 0
     player.lives = 5
 
-def start_phase2():
+def start_phase2(vidas):
     global game_state
+    player.lives=vidas
     game_state = PHASE2
 
 # Loop principal
@@ -119,7 +120,7 @@ while running:
                         player.score += 1
                         colidiu_com_bala_inimigo = True
                         if player.score >= 20:
-                            start_phase2()
+                            start_phase2(player.lives)
 
         # Atualização de palavras QUIZ
         for quiz in quizzes[:]:
