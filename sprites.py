@@ -92,7 +92,7 @@ class Heart:
         self.height = 30
         self.x = random.randint(50, WIDTH - 200)
         self.y = random.randint(50, HEIGHT - 50)
-        self.speed = 3
+        self.speed = 0
         self.active = False
         
     def update(self):
