@@ -101,14 +101,41 @@ class Heart:
         
     def draw(self, screen):
         if self.active:
+           # raio dos círculos e o tamanho do triângulo
+            radius = self.width // 4
+            
+            # Posições dos centros dos círculos
+            circle1_x = self.x + radius
+            circle1_y = self.y + radius
+            circle2_x = self.x + self.width - radius
+            circle2_y = self.y + radius
+
+            # Pontos do triângulo
+            triangle_point_top = (self.x + self.width // 2, self.y + self.height // 3) # Ajustado para a ponta do coração
+            triangle_point_left = (self.x, self.y + self.height // 3) # Aproximadamente na base dos círculos
+            triangle_point_right = (self.x + self.width, self.y + self.height // 3) # Aproximadamente na base dos círculos
+            triangle_point_bottom = (self.x + self.width // 2, self.y + self.height)
+
+
+            # dois círculos superiores
+            pygame.draw.circle(screen, RED, (circle1_x, circle1_y), radius)
+            pygame.draw.circle(screen, RED, (circle2_x, circle2_y), radius)
+
+            # Desenha o triângulo que forma a parte inferior do coração
             pygame.draw.polygon(screen, RED, [
-                (self.x + self.width//2, self.y),
-                (self.x + self.width, self.y + self.height//3),
-                (self.x + self.width, self.y + self.height),
-                (self.x + self.width//2, self.y + self.height*2//3),
-                (self.x, self.y + self.height),
-                (self.x, self.y + self.height//3)
+                (self.x + self.width // 2, self.y + radius * 2),  # Ponto central abaixo dos círculos
+                (self.x, self.y + self.height * 0.7),  # Ponto esquerdo da parte de baixo do coração
+                (self.x + self.width // 2, self.y + self.height), # Ponto da ponta inferior do coração
+                (self.x + self.width, self.y + self.height * 0.7)  # Ponto direito da parte de baixo do coração
             ])
-        
+           # Uma forma alternativa e mais precisa para a parte inferior
+            # Você pode preencher um polígono que conecta os círculos e a ponta
+            pygame.draw.polygon(screen, RED, [
+                (self.x + self.width // 2, self.y + self.height), # Ponta inferior
+                (self.x, self.y + self.height // 3), # Ponto inferior esquerdo do círculo esquerdo
+                (self.x + self.width // 2, self.y + radius), # Ponto de conexão entre os círculos
+                (self.x + self.width, self.y + self.height // 3) # Ponto inferior direito do círculo direito
+            ])
+            
     def is_past_line(self):
         return self.x > WIDTH - 150

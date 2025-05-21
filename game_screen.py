@@ -69,10 +69,8 @@ def draw_phase2(player, bullets, enemies, quizzes, heart):
 
 def draw_victory(player):
     screen.blit(fundodetela_victory, (0, 0))  
-    text = font_large.render("VITÓRIA!", True, GREEN)
     score_text = font_medium.render(f"Pontuação final: {player.score}", True, WHITE)
     restart = font_medium.render("Pressione ESPAÇO para recomeçar", True, GREEN)
 
-    screen.blit(text, (WIDTH//2 - text.get_width()//2, HEIGHT//3))
-    screen.blit(score_text, (WIDTH//2 - score_text.get_width()//2, HEIGHT//2))
-    screen.blit(restart, (WIDTH//2 - restart.get_width()//2, HEIGHT//2 + 50))
+    screen.blit(score_text, (WIDTH//2 - score_text.get_width()//2, HEIGHT//4))
+    screen.blit(restart, (WIDTH//2 - restart.get_width()//2, HEIGHT*0.7))
