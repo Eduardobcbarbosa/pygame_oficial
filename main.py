@@ -5,8 +5,25 @@ from config import *
 from assets import *
 from sprites import Player, Bullet, Enemy, QuizWord, Heart
 from game_screen import draw_menu, draw_game_over, draw_phase1, draw_phase2, draw_victory
+import os
 last_shot_time = 0
 shot_delay = 150
+from config import MENU_MUSIC, PHASE1_MUSIC, PHASE2_MUSIC, VICTORY_MUSIC, GAME_OVER_MUSIC, SHOT_SOUND
+
+# Inicialização do áudio
+pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
+pygame.mixer.music.set_volume(0.7)
+
+# Carrega o som do tiro
+shot_sound = pygame.mixer.Sound(SHOT_SOUND)
+shot_sound.set_volume(0.5)
+
+# controlar a música
+def play_music(music_file, loops=-1, volume=0.7):
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load(music_file)
+    pygame.mixer.music.set_volume(volume)
+    pygame.mixer.music.play(loops)
 
 # Inicialização do jogo
 player = Player()
@@ -23,6 +40,7 @@ enemies_killed_in_phase2 = 0
 # Funções de controle
 def reset_game():
     global player, bullets, enemies, quizzes, heart, game_state, enemy_spawn_timer, quiz_spawn_timer, heart_spawn_timer, enemies_killed_in_phase2
+    pygame.mixer.music.stop()
     player = Player()
     bullets = []
     enemies = []
@@ -33,22 +51,29 @@ def reset_game():
     quiz_spawn_timer = 0
     heart_spawn_timer = 0
     enemies_killed_in_phase2 = 0
+    play_music(MENU_MUSIC)
 
 def start_phase1():
     global game_state
     game_state = PHASE1
     player.score = 0
     player.lives = 10
+    play_music(PHASE1_MUSIC)
+
 
 def start_phase2(vidas):
     global game_state
     player.lives=vidas
     game_state = PHASE2
+    play_music(PHASE2_MUSIC)
+
 
 # Loop principal
 running = True
 clock = pygame.time.Clock()
 FPS = 60
+play_music(MENU_MUSIC)
+shot_sound = pygame.mixer.Sound(SHOT_SOUND)
 
 while running:
     clock.tick(FPS)
@@ -78,6 +103,7 @@ while running:
             current_time = pygame.time.get_ticks()
             if current_time - last_shot_time > shot_delay:
                 player.shoot(bullets)
+                shot_sound.play()
                 last_shot_time = current_time
 
         # Spawn de inimigos
@@ -153,6 +179,7 @@ while running:
             current_time = pygame.time.get_ticks()
             if current_time - last_shot_time > shot_delay:
                 player.shoot(bullets)
+                shot_sound.play()
                 last_shot_time = current_time
 
         # Spawn de inimigos
@@ -193,6 +220,7 @@ while running:
                 player.lives -= 1
                 if player.lives <= 0:
                     game_state = GAME_OVER
+                    play_music(GAME_OVER_MUSIC)
             else:
                 for bullet in bullets[:]:
                     if not colidiu_com_bala_inimigo_fase2 and (
@@ -216,6 +244,7 @@ while running:
 
                         if player.score >= 50:
                             game_state = VICTORY
+                            play_music(VICTORY_MUSIC)
 
         # Atualização de palavras QUIZ
         for quiz in quizzes[:]:
@@ -263,7 +292,7 @@ while running:
     elif game_state == PHASE1:
         draw_phase1(player, bullets, enemies, quizzes)
     elif game_state == PHASE2:
-        draw_phase2(player, bullets, enemies, quizzes,heart)
+        draw_phase2(player, bullets, enemies, quizzes)
     elif game_state == GAME_OVER:
         draw_game_over(player)
     elif game_state == VICTORY:

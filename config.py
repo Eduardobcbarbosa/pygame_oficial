@@ -1,7 +1,6 @@
 import pygame
 
 pygame.init()
-pygame.mixer.init()
 
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -25,3 +24,13 @@ PHASE1 = 1
 PHASE2 = 2
 GAME_OVER = 3
 VICTORY = 4
+
+MENU_MUSIC = "assets/sounds/menu_music.mp3"
+PHASE1_MUSIC = "assets/sounds/phase1_music.mp3"
+PHASE2_MUSIC = "assets/sounds/phase2_music.mp3"
+VICTORY_MUSIC = "assets/sounds/victory_music.mp3"
+GAME_OVER_MUSIC = "assets/sounds/game_over_music.mp3"
+SHOT_SOUND = "assets/sounds/shot_sound.wav"
+
+
+ 
