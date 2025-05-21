@@ -44,7 +44,7 @@ def draw_phase1(player, bullets, enemies, quizzes):
     screen.blit(lives_text, (20, 50))
     screen.blit(phase_text, (WIDTH - 100, 20))
 
-def draw_phase2(player, bullets, enemies, quizzes,heart):
+def draw_phase2(player, bullets, enemies, quizzes, heart):
     screen.blit(fundodetela_phase2, (0, 0))  
     player.draw(screen)
     heart.draw(screen)

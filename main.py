@@ -288,7 +288,7 @@ while running:
     elif game_state == PHASE1:
         draw_phase1(player, bullets, enemies, quizzes)
     elif game_state == PHASE2:
-        draw_phase2(player, bullets, enemies, quizzes)
+        draw_phase2(player, bullets, enemies, quizzes, heart)
     elif game_state == GAME_OVER:
         draw_game_over(player)
     elif game_state == VICTORY:
