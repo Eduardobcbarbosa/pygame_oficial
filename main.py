@@ -167,7 +167,9 @@ while running:
                         player.lives -= 1
                         colidiu_com_bala_quiz = True
                         if player.lives <= 0:
+                            play_music(GAME_OVER_MUSIC)
                             game_state = GAME_OVER
+                
     
     elif game_state == PHASE2:
         keys = pygame.key.get_pressed()
@@ -216,8 +218,9 @@ while running:
                 enemies.remove(enemy)
                 player.lives -= 1
                 if player.lives <= 0:
-                    game_state = GAME_OVER
                     play_music(GAME_OVER_MUSIC)
+                    game_state = GAME_OVER
+                
             else:
                 for bullet in bullets[:]:
                     if not colidiu_com_bala_inimigo_fase2 and (
@@ -261,7 +264,9 @@ while running:
                         player.lives -= 1
                         colidiu_com_bala_quiz_fase2 = True
                         if player.lives <= 0:
+                            play_music(GAME_OVER_MUSIC)
                             game_state = GAME_OVER
+    
 
         # Atualização do coração
         if heart.active:
