@@ -92,21 +92,23 @@ class Heart:
         self.height = 30
         self.x = random.randint(50, WIDTH - 200)
         self.y = random.randint(50, HEIGHT - 50)
-        self.speed = 0
+        self.speed = 3
         self.active = False
         
     def update(self):
-        self.x += self.speed
+        if self.active:
+            self.x += self.speed
         
     def draw(self, screen):
-        pygame.draw.polygon(screen, RED, [
-            (self.x + self.width//2, self.y),
-            (self.x + self.width, self.y + self.height//3),
-            (self.x + self.width, self.y + self.height),
-            (self.x + self.width//2, self.y + self.height*2//3),
-            (self.x, self.y + self.height),
-            (self.x, self.y + self.height//3)
-        ])
+        if self.active:
+            pygame.draw.polygon(screen, RED, [
+                (self.x + self.width//2, self.y),
+                (self.x + self.width, self.y + self.height//3),
+                (self.x + self.width, self.y + self.height),
+                (self.x + self.width//2, self.y + self.height*2//3),
+                (self.x, self.y + self.height),
+                (self.x, self.y + self.height//3)
+            ])
         
     def is_past_line(self):
         return self.x > WIDTH - 150
