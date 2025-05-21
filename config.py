@@ -25,11 +25,11 @@ PHASE2 = 2
 GAME_OVER = 3
 VICTORY = 4
 
-MENU_MUSIC = "assets/sounds/menu_music.mp3"
-PHASE1_MUSIC = "assets/sounds/phase1_music.mp3"
-PHASE2_MUSIC = "assets/sounds/phase2_music.mp3"
-VICTORY_MUSIC = "assets/sounds/victory_music.mp3"
-GAME_OVER_MUSIC = "assets/sounds/game_over_music.mp3"
+MENU_MUSIC = "assets/sounds/menu_music.wav"
+PHASE1_MUSIC = "assets/sounds/phase1_music.wav"
+PHASE2_MUSIC = "assets/sounds/phase2_music.wav"
+VICTORY_MUSIC = "assets/sounds/victory_music.wav"
+GAME_OVER_MUSIC = "assets/sounds/game_over_music.wav"
 SHOT_SOUND = "assets/sounds/shot_sound.wav"
 
 
