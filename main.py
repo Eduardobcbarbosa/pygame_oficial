@@ -232,7 +232,7 @@ while running:
                         enemies_killed_in_phase2 += 1
                         colidiu_com_bala_inimigo_fase2 = True
 
-                        if enemies_killed_in_phase2 >= 15:
+                        if enemies_killed_in_phase2 >= 5:
                             heart.active = True
                             enemies_killed_in_phase2 = 0
                             heart.x = random.randint(50, WIDTH - 200)
