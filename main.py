@@ -1,13 +1,15 @@
+#importacoes de bibliotecas e modulos
 import pygame
 import random
 import sys
 from config import *
 from assets import *
-from sprites import Player, Bullet, Enemy, QuizWord, Heart
+from sprites import Player, Bullet, Enemy, QuizWord, Heart # Classes dos elementos do jogo
 from game_screen import draw_menu, draw_game_over, draw_phase1, draw_phase2, draw_victory
 import os
-last_shot_time = 0
-shot_delay = 150
+#variaveis de controle de tiros
+last_shot_time = 0 # armazena o ultimo momento em que o jogador atirou
+shot_delay = 150 # Tempo minimo entre tiros (em milissegundos)
 from config import MENU_MUSIC, PHASE1_MUSIC, PHASE2_MUSIC, VICTORY_MUSIC, GAME_OVER_MUSIC, SHOT_SOUND
 
 # Inicialização do áudio
@@ -32,6 +34,7 @@ enemies = []
 quizzes = []
 heart = Heart()
 game_state = MENU 
+# spawn elementos
 enemy_spawn_timer = 0
 quiz_spawn_timer = 0
 heart_spawn_timer = 0
@@ -47,12 +50,13 @@ def reset_game():
     quizzes = []
     heart = Heart()
     game_state = MENU
+    #reseta temporizador 
     enemy_spawn_timer = 0
     quiz_spawn_timer = 0
     heart_spawn_timer = 0
     enemies_killed_in_phase2 = 0
     play_music(MENU_MUSIC)
-
+# inicia fase 1
 def start_phase1():
     global game_state
     game_state = PHASE1
@@ -60,7 +64,7 @@ def start_phase1():
     player.lives = 10
     play_music(PHASE1_MUSIC)
 
-
+#incia fase 2
 def start_phase2(vidas):
     global game_state
     player.lives=vidas
@@ -80,17 +84,17 @@ while running:
 
     # Eventos
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT: #fecha a janela
             running = False
         
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN: # tecla pressionada
             if event.key == pygame.K_ESCAPE:
                 running = False
             
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE: # espaco para acoes
                 if game_state == MENU:
                     start_phase1()
-                elif game_state in (GAME_OVER, VICTORY):
+                elif game_state in (GAME_OVER, VICTORY): # tela de fim, reinicia 
                     reset_game()
     
     # Lógica do jogo
@@ -133,7 +137,7 @@ while running:
                 player.lives -= 1
                 if player.lives <= 0:
                     game_state = GAME_OVER
-            else:
+            else: #verifica colisao com balas 
                 for bullet in bullets[:]:
                     if not colidiu_com_bala_inimigo and (
                         bullet.x < enemy.x + enemy.width and
@@ -170,7 +174,6 @@ while running:
                             play_music(GAME_OVER_MUSIC)
                             game_state = GAME_OVER
                 
-    
     elif game_state == PHASE2:
         keys = pygame.key.get_pressed()
         player.move(keys)
@@ -289,7 +292,7 @@ while running:
 
     # Renderização
     if game_state == MENU:
-        draw_menu()
+        draw_menu() 
     elif game_state == PHASE1:
         draw_phase1(player, bullets, enemies, quizzes)
     elif game_state == PHASE2:
@@ -301,5 +304,6 @@ while running:
 
     pygame.display.flip()
 
-pygame.quit()
-sys.exit()
+pygame.quit() #encerra o pygame
+sys.exit() # sai do programa
+

@@ -4,14 +4,15 @@ from config import WIDTH, HEIGHT, BLUE, WHITE, YELLOW, RED, PURPLE, BLACK
 
 class Player:
     def __init__(self):
-        self.width = 50
-        self.height = 50
-        self.x = WIDTH - 100
-        self.y = HEIGHT // 2
-        self.speed = 5
-        self.lives = 3
-        self.score = 0
-        
+        # config iniciais jogador
+        self.width = 50 # largura sprite
+        self.height = 50 # altura sprite 
+        self.x = WIDTH - 100 # posicao x inicial
+        self.y = HEIGHT // 2 # posicao y inicial
+        self.speed = 5 # velocidade movimento
+        self.lives = 3 # vidas iniciais
+        self.score = 0 # pontuacao inicial
+        # carrega e redimensiona imagem jogador 
         self.image = pygame.image.load('assets/player.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
         
@@ -19,9 +20,9 @@ class Player:
         screen.blit(self.image, (self.x, self.y))
         
     def move(self, keys):
-        if keys[pygame.K_UP] and self.y > 0:
+        if keys[pygame.K_UP] and self.y > 0: # move para cima
             self.y -= self.speed
-        if keys[pygame.K_DOWN] and self.y < HEIGHT - self.height:
+        if keys[pygame.K_DOWN] and self.y < HEIGHT - self.height: # move para baixo
             self.y += self.speed
             
     def shoot(self, bullets):
@@ -30,11 +31,12 @@ class Player:
 
 class Bullet:
     def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        self.speed = 10
-        self.width = 5
-        self.height = 5
+        #configs iniciais bala
+        self.x = x #posicao x inciial
+        self.y = y # posicao y inicial
+        self.speed = 10 # velocidade bala
+        self.width = 5 # largura
+        self.height = 5 # altura 
         
     def update(self):
         self.x -= self.speed
@@ -47,12 +49,13 @@ class Bullet:
 
 class Enemy:
     def __init__(self, speed):
-        self.width = 40
-        self.height = 40
-        self.x = 0
-        self.y = random.randint(0, HEIGHT - self.height)
-        self.speed = speed
-        self.word = "DP"
+        # config iniciais inimigo
+        self.width = 40 #largura
+        self.height = 40 # altura
+        self.x = 0 #posicao x iniial
+        self.y = random.randint(0, HEIGHT - self.height) # posicao y aleatoria
+        self.speed = speed # velocidade
+        self.word = "DP" #texto inimigo
         
     def update(self):
         self.x += self.speed
@@ -68,12 +71,13 @@ class Enemy:
 
 class QuizWord:
     def __init__(self, speed):
-        self.width = 60
-        self.height = 40
-        self.x = 0
-        self.y = random.randint(0, HEIGHT - self.height)
-        self.speed = speed
-        self.word = "QUIZ"
+        # configs iniciais
+        self.width = 60 # largura maior pro texto
+        self.height = 40 #altura
+        self.x = 0 # posicao x inicial
+        self.y = random.randint(0, HEIGHT - self.height) # posicao y aleatoria
+        self.speed = speed #velocidade
+        self.word = "QUIZ" # texto fixo
         
     def update(self):
         self.x += self.speed
@@ -88,12 +92,13 @@ class QuizWord:
 
 class Heart:
     def __init__(self):
-        self.width = 30
-        self.height = 30
-        self.x = random.randint(50, WIDTH - 200)
-        self.y = random.randint(50, HEIGHT - 50)
-        self.speed = 3
-        self.active = False
+        # configs inciais 
+        self.width = 30 # largura
+        self.height = 30 # altura
+        self.x = random.randint(50, WIDTH - 200) # posicao x aleatoria
+        self.y = random.randint(50, HEIGHT - 50) # posicao y aleatoria
+        self.speed = 3 # velocidade
+        self.active = False # estado inicial (inativo)
         
     def update(self):
         if self.active:
