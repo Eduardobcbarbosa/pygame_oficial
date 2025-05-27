@@ -42,7 +42,6 @@ def draw_phase1(player, bullets, enemies, quizzes):
     score_text = font_medium.render(f"Pontos: {player.score}", True, WHITE)
     lives_text = font_medium.render(f"Vidas: {player.lives}", True, WHITE)
     phase_text = font_small.render("Fase 1", True, BLACK)
-
     screen.blit(score_text, (20, 20))
     screen.blit(lives_text, (20, 50))
     screen.blit(phase_text, (WIDTH - 100, 20))

@@ -237,13 +237,13 @@ while running:
                         player.score += 1
                         enemies_killed_in_phase2 += 1
                         colidiu_com_bala_inimigo_fase2 = True
-
+                        #Se matou mais que 5 na fase 2, aparece o coração
                         if enemies_killed_in_phase2 >= 5:
                             heart.active = True
                             enemies_killed_in_phase2 = 0
                             heart.x = random.randint(50, WIDTH - 200)
                             heart.y = random.randint(50, HEIGHT - 50)
-
+                        #Se fizer 50 pontos, o jogo vai para victory e toca a música específica 
                         if player.score >= 50:
                             game_state = VICTORY
                             play_music(VICTORY_MUSIC)
