@@ -91,7 +91,7 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
             
-            if event.key == pygame.K_SPACE: # espaco para acoes
+            if event.key == pygame.K_RETURN: # espaco para acoes
                 if game_state == MENU:
                     start_phase1()
                 elif game_state in (GAME_OVER, VICTORY): # tela de fim, reinicia 

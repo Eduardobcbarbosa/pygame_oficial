@@ -6,7 +6,7 @@ def draw_menu():
     # desenha fundo do menu
     screen.blit(fundodetela_menu, (0, 0))  
     # cria textos renderizados
-    start = font_medium.render("Pressione 'ESPAÇO' para começar", True, RED)
+    start = font_medium.render("Pressione 'RETURN' para começar", True, RED)
     instructions = font_medium.render("Use as setinhas para mover e 'ESPAÇO' para atirar", True, WHITE)
 
    # posiciona os textos na tela
@@ -18,7 +18,7 @@ def draw_game_over(player):
     screen.blit(fundodetela_game_over, (0, 0))  
     # cria textos com pontuacao e instrucao para reiniciar
     score_text = font_medium.render(f"Pontuação: {player.score}", True, WHITE)
-    restart = font_medium.render("Pressione ESPAÇO para recomeçar", True, GREEN)
+    restart = font_medium.render("Pressione RETURN para recomeçar", True, GREEN)
     # posiciona os textos 
     screen.blit(score_text, (WIDTH//2 - score_text.get_width()//2, HEIGHT*0.43))
     screen.blit(restart, (WIDTH//2 - restart.get_width()//2, HEIGHT*0.9))
@@ -75,7 +75,7 @@ def draw_victory(player):
     screen.blit(fundodetela_victory, (0, 0))  
     # cria texto com pontuacao final e opcao para reiniciar 
     score_text = font_medium.render(f"Pontuação final: {player.score}", True, WHITE)
-    restart = font_medium.render("Pressione ESPAÇO para recomeçar", True, GREEN)
+    restart = font_medium.render("Pressione RETURN para recomeçar", True, GREEN)
     # posiciona os textos 
     screen.blit(score_text, (WIDTH//2 - score_text.get_width()//2, HEIGHT//4))
     screen.blit(restart, (WIDTH//2 - restart.get_width()//2, HEIGHT*0.7))
