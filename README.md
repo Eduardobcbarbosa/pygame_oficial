@@ -18,7 +18,7 @@
     O jogador terá 10 vidas, para cada DP que atravessar a linha vermelha o jogador perderá uma vida! Outra forma de perder suas tão preciosas vidas é acertando um dos quadradinhos nomeados de 'quiz'. Há também uma forma de recuperar suas vidas é acertando o coraçãozinho que aparece a cada 15 pontos. Vence o jogador que marcar 50 pontos!
 
  Endereço para o vídeo do youtube:
-    
+    https://youtu.be/4ml-1Pmp2Ns?si=_TvGlcEyul3AHFxL 
     
     
 
