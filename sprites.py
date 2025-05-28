@@ -4,24 +4,27 @@ from config import WIDTH, HEIGHT, BLUE, WHITE, YELLOW, RED, PURPLE, BLACK
 
 class Player:
     def __init__(self):
-        self.width = 50
-        self.height = 50
-        self.x = WIDTH - 100
-        self.y = HEIGHT // 2
-        self.speed = 5
-        self.lives = 3
-        self.score = 0
-        
+        # config iniciais jogador
+        self.width = 50 # largura sprite
+        self.height = 50 # altura sprite 
+        self.x = WIDTH - 100 # posicao x inicial
+        self.y = HEIGHT // 2 # posicao y inicial
+        self.speed = 5 # velocidade movimento
+        self.lives = 3 # vidas iniciais
+        self.score = 0 # pontuacao inicial
+        # carrega e redimensiona imagem jogador 
         self.image = pygame.image.load('assets/player.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
-        
+    
+    #desenha jogador    
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
-        
+    
+    #move jogador 
     def move(self, keys):
-        if keys[pygame.K_UP] and self.y > 0:
+        if keys[pygame.K_UP] and self.y > 0: # move para cima
             self.y -= self.speed
-        if keys[pygame.K_DOWN] and self.y < HEIGHT - self.height:
+        if keys[pygame.K_DOWN] and self.y < HEIGHT - self.height: # move para baixo
             self.y += self.speed
             
     def shoot(self, bullets):
@@ -30,75 +33,81 @@ class Player:
 
 class Bullet:
     def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        self.speed = 10
-        self.width = 5
-        self.height = 5
+        #configs iniciais bala
+        self.x = x #posicao x inciial
+        self.y = y # posicao y inicial
+        self.speed = 10 # velocidade bala
+        self.width = 5 # largura
+        self.height = 5 # altura 
         
+    #posição
     def update(self):
         self.x -= self.speed
-        
+
+    #desenha bala    
     def draw(self, screen):
         pygame.draw.rect(screen, BLUE, (self.x, self.y, self.width, self.height))
-        
+    #define momento em que a bala sai da tela   
     def is_off_screen(self):
         return self.x < 0
 
 class Enemy:
     def __init__(self, speed):
-        self.width = 40
-        self.height = 40
-        self.x = 0
-        self.y = random.randint(0, HEIGHT - self.height)
-        self.speed = speed
-        self.word = "DP"
-        
+        # configurações iniciais inimigo
+        self.width = 40 #largura
+        self.height = 40 # altura
+        self.x = 0 #posicao x inicial
+        self.y = random.randint(0, HEIGHT - self.height) # posicao y aleatoria
+        self.speed = speed # velocidade
+        self.word = "DP" #texto inimigo
+    #posição   
     def update(self):
         self.x += self.speed
-        
+    #desenha inimigo    
     def draw(self, screen):
         pygame.draw.rect(screen, RED, (self.x, self.y, self.width, self.height))
         font = pygame.font.SysFont('Arial', 20)
         text = font.render(self.word, True, WHITE)
         screen.blit(text, (self.x + 10, self.y + 10))
-        
+    #define quando sai da tela    
     def is_past_line(self):
         return self.x > WIDTH - 150
 
 class QuizWord:
     def __init__(self, speed):
-        self.width = 60
-        self.height = 40
-        self.x = 0
-        self.y = random.randint(0, HEIGHT - self.height)
-        self.speed = speed
-        self.word = "QUIZ"
-        
+        # configs iniciais
+        self.width = 60 # largura maior pro texto
+        self.height = 40 #altura
+        self.x = 0 # posicao x inicial
+        self.y = random.randint(0, HEIGHT - self.height) # posicao y aleatoria
+        self.speed = speed #velocidade
+        self.word = "QUIZ" # texto fixo
+    #posição   
     def update(self):
         self.x += self.speed
-        
+    #desenha quiz   
     def draw(self, screen):
         pygame.draw.rect(screen, PURPLE, (self.x, self.y, self.width, self.height))
         text = pygame.font.SysFont('Arial', 20).render(self.word, True, WHITE)
         screen.blit(text, (self.x + 5, self.y + 10))
-        
+    #define quando sai da tela   
     def is_past_line(self):
         return self.x > WIDTH - 150
 
 class Heart:
     def __init__(self):
-        self.width = 30
-        self.height = 30
-        self.x = random.randint(50, WIDTH - 200)
-        self.y = random.randint(50, HEIGHT - 50)
-        self.speed = 3
-        self.active = False
-        
+        # configs inciais 
+        self.width = 30 # largura
+        self.height = 30 # altura
+        self.x = random.randint(50, WIDTH - 200) # posicao x aleatoria
+        self.y = random.randint(50, HEIGHT - 50) # posicao y aleatoria
+        self.speed = 3 # velocidade
+        self.active = False # estado inicial (inativo)
+    #posição quando tiver ativo    
     def update(self):
         if self.active:
             self.x += self.speed
-        
+    #desenha coração    
     def draw(self, screen):
         if self.active:
            # raio dos círculos e o tamanho do triângulo
@@ -136,6 +145,6 @@ class Heart:
                 (self.x + self.width // 2, self.y + radius), # Ponto de conexão entre os círculos
                 (self.x + self.width, self.y + self.height // 3) # Ponto inferior direito do círculo direito
             ])
-            
+    #define quando sai da tela        
     def is_past_line(self):
         return self.x > WIDTH - 150
